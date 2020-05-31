@@ -1,2 +1,3 @@
-# Tp-2-Totilo
+# Tp-3-Totilo
+Catalogo de articulos web
 
