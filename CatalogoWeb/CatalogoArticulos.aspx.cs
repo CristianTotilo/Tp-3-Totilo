@@ -12,28 +12,21 @@ namespace CatalogoWeb
     public partial class CatalogoArticulos : System.Web.UI.Page
     {
         public List<Articulo> listaArticulos { get; set; }
+        public List<Marca> listaMarcas = new List<Marca>();
+        public Carrito carrito = new Carrito();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 CatalogoNegocio negocio = new CatalogoNegocio();
                 listaArticulos = negocio.listar();
-                dgvArticulos.DataSource = listaArticulos;
-                dgvArticulos.DataBind();
+                //dgvArticulos.DataSource = listaArticulos;
+                //dgvArticulos.DataBind();
 
                 Session[Session.SessionID + "listaArticulos"] = listaArticulos;
 
-                cboArticulos.DataSource = listaArticulos;
-                cboArticulos.DataBind();
-
-                //cboPokemons.Items.Add("Rojo");
-                //cboPokemons.Items.Add("Azul");
-                //cboPokemons.Items.Add("Verde");
-
                 if (!IsPostBack)
-                { //pregunto si es la primera carga de la page
-                  // txtNumeroPokemon.Text = "150";
-                  //esto es lo que necesitamos para el repeater.
+                { 
                     repetidor.DataSource = listaArticulos;
                     repetidor.DataBind();
                 }
@@ -41,10 +34,12 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
-
+      
+      
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -98,8 +93,8 @@ namespace CatalogoWeb
 
         protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            string idPoke = dgvArticulos.Rows[index].Cells[1].Text;
+            //int index = Convert.ToInt32(e.CommandArgument);
+            //string idPoke = dgvArticulos.Rows[index].Cells[1].Text;
         }
     }
 }
