@@ -7,7 +7,6 @@
 <asp:Content ID="CatalogoArticulos" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-fluid" style="background-image: url(https://wallpaperaccess.com/full/2482231.jpg)">
-        <h1 style="text-align:center; text-shadow:3px 2px 1px #808080; background-clip:border-box;">Catalogo de Articulos 2020 </h1>
         <%--<asp:DropDownList runat="server" ID="cboArticulos" />--%>
 
         <div class="card-columns" style="margin-left: 10px; margin-right: 10px;">
@@ -19,16 +18,16 @@
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
                             <h6 class="card-title">Precio: $<%#Eval("Precio")%></h6>
                         </div>
-                        <div class="btn-group" role="group" aria-label="Basic example" style="align-content:center">
-                            <a class="btn btn-warning" href="DetalleArticulo.aspx?idart=<%#Eval("Id")%>">Detalle</a>
-                            <asp:Button ID="btnAgregar" CssClass="btn btn-success" Text="Agregar al carrito" CommandArgument='<%#Eval("Id")%>' CommandName="idArticulo" runat="server" OnClick="btnArgumento_Click" />
+                        <div class="btn-group" role="group" aria-label="Basic example" style="align-content: center">
+                            <a class="btn btn-warning" href="DetalleArticulo.aspx?idart=<%#Eval("ID")%>">Detalle</a>
+                            <a class="btn btn-success" href="Carrito.aspx?idart=<%#Eval("ID") %>">Agregar al carrito</a>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
     </div>
-   <%-- <style>
+    <%-- <style>
         .oculto {
             display: none;
         }

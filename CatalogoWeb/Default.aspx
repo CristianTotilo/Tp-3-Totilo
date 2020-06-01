@@ -2,9 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>DEFAULT</h1>
-    <asp:Label Text="Desplegable de Articulo" runat="server" />
-    <asp:DropDownList runat="server" ID="ddlArticulo"></asp:DropDownList>
-    <asp:Button Text="Seleccionar Articulo" ID="btnSeleccionar" runat="server" onClick="btnSeleccionar_Click" />
-    <asp:Label Text="nada seleccionado" ID="lblSeleccion" runat="server" />
+    <h1><a class="btn btn-info btn-lg btn-block" href="CatalogoArticulos.aspx">Bienvenido al Catalogo de Articulos 2020, precione este boton para iniciar su Busqueda</a></h1>
+    <img src="https://wallpaperaccess.com/full/2482231.jpg" class="img-fluid" alt="Responsive image">
 </asp:Content>

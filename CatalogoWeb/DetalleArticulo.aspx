@@ -18,7 +18,7 @@
                             <h4 class="card-title">Precio: $<% = articulo.Precio %></h4>
                         </div>
                         </div>
-                        <div class="container" style="background-color: ghostwhite; background-clip: border-box;>
+                        <div class="container" style="background-color: ghostwhite; background-clip: border-box;">
                             <p class="card-text">Descripcion: </br> <% = articulo.Descripcion %></p>
                         </div>
                         <a class="btn btn-info btn-lg btn-block" href="CatalogoArticulos.aspx">Volver al catalogo</a>

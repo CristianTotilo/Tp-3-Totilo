@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Carrito
+     public class CarritoCompras
     {
+
         public int ID { get; set; }
         public int CantidadItems { get; set; }
         public List<Item> listaItems { get; set; }
-        public Carrito()
+
+
+        public CarritoCompras()
         {
             List<Item> lista = new List<Item>();
             listaItems = lista;
         }
-        public double PrecioTotal()
+        public double precioTotal()
         {
             double total = 0;
             foreach (var item in listaItems)
@@ -25,16 +28,16 @@ namespace Dominio
             }
             return total;
         }
-        public void agregarItem(Articulo articulo, int cantidad)
+        public void agregarItem(Articulo articulo)
         {
             Item item = new Item();
             CantidadItems += 1;
             item.Articulo = articulo;
-            item.Cantidad = cantidad;
-            item.ID = CantidadItems;
+            item.Cantidad +=1;
+            item.ID = articulo.ID;
             listaItems.Add(item);
         }
-        public int getCantidad(int cantidad=0)
+        public int getCantidad(int cantidad = 0)
         {
             foreach (var item in listaItems)
             {
@@ -54,5 +57,6 @@ namespace Dominio
                 }
             }
         }
+
     }
 }

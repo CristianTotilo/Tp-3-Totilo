@@ -12,6 +12,7 @@ namespace Negocio
     {
         public List<Categoria> listar()
         {
+            AccesoDatos datos = new AccesoDatos();
             List<Categoria> listado = new List<Categoria>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -19,17 +20,15 @@ namespace Negocio
 
             try
             {
-                conexion.ConnectionString = "data source=DESKTOP-TL0O0F7\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select Id, Descripcion from CATEGORIAS";
-                comando.Connection = conexion;
-                conexion.Open();
-                lector = comando.ExecuteReader();
-                while (lector.Read())
+
+                datos.setearQuery("select Id, Descripcion from CATEGORIAS");
+                datos.ejecutarLector();
+
+                while (datos.lector.Read())
                 {
                     Categoria aux = new Categoria();
-                    aux.ID = lector.GetInt32(0);
-                    aux.Descripcion = lector.GetString(1);
+                    aux.ID = datos.lector.GetInt32(0);
+                    aux.Descripcion = datos.lector.GetString(1);
 
                     listado.Add(aux);
                 }
@@ -42,7 +41,7 @@ namespace Negocio
             }
             finally
             {
-                conexion.Close();
+                datos.cerrarConexion();
             }
         }
     }

@@ -14,27 +14,27 @@ namespace CatalogoWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            CatalogoNegocio negocio = new CatalogoNegocio();
-            try
-            {
-                if (!IsPostBack)
-                {
-                    ddlArticulo.DataSource = negocio.listar();
-                    ddlArticulo.DataTextField = "Nombre";
-                    ddlArticulo.DataValueField = "Id";
-                    ddlArticulo.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
+        //    CatalogoNegocio negocio = new CatalogoNegocio();
+        //    try
+        //    {
+        //        if (!IsPostBack)
+        //        {
+        //            ddlArticulo.DataSource = negocio.listar();
+        //            ddlArticulo.DataTextField = "Nombre";
+        //            ddlArticulo.DataValueField = "Id";
+        //            ddlArticulo.DataBind();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
+        //        throw ex;
+        //    }
         }
 
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            lblSeleccion.Text = "El id del articulo seleccionado es: " + ddlArticulo.SelectedItem.Value;
+            //lblSeleccion.Text = "El id del articulo seleccionado es: " + ddlArticulo.SelectedItem.Value;
         }
     }
 }
