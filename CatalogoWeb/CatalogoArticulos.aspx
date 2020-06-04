@@ -7,7 +7,6 @@
 <asp:Content ID="CatalogoArticulos" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-fluid" style="background-image: url(https://wallpaperaccess.com/full/2482231.jpg)">
-        <%--<asp:DropDownList runat="server" ID="cboArticulos" />--%>
 
         <div class="card-columns" style="margin-left: 10px; margin-right: 10px;">
             <asp:Repeater runat="server" ID="repetidor">
@@ -20,7 +19,7 @@
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic example" style="align-content: center">
                             <a class="btn btn-warning" href="DetalleArticulo.aspx?idart=<%#Eval("ID")%>">Detalle</a>
-                            <a class="btn btn-success" href="Carrito.aspx?idart=<%#Eval("ID") %>">Agregar al carrito</a>
+                            <a class="btn btn-success" href="Carrito.aspx?idsum=<%#Eval("ID") %>">Agregar al carrito</a>
                         </div>
                     </div>
                 </ItemTemplate>

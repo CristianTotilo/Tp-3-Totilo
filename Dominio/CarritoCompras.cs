@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-     public class CarritoCompras
+    public class CarritoCompras
     {
 
-        public int ID { get; set; }
+        public string ID { get; set; }
         public int CantidadItems { get; set; }
         public List<Item> listaItems { get; set; }
 
@@ -30,12 +30,32 @@ namespace Dominio
         }
         public void agregarItem(Articulo articulo)
         {
-            Item item = new Item();
-            CantidadItems += 1;
-            item.Articulo = articulo;
-            item.Cantidad +=1;
-            item.ID = articulo.ID;
-            listaItems.Add(item);
+            Item newItem = new Item();
+            if (listaItems.Count == 0)
+            {
+                newItem.ID = articulo.ID;
+                newItem.Articulo = articulo;
+                CantidadItems += 1;
+                listaItems.Add(newItem);
+            }
+            else
+            {
+                foreach (var item in listaItems)
+                {
+                    if (item.ID == articulo.ID)
+                    {
+                        item.Cantidad += 1;
+                        CantidadItems += 1;
+                    }
+                    else
+                    {
+                        newItem.ID = articulo.ID;
+                        newItem.Articulo = articulo;
+                        CantidadItems += 1;
+                        listaItems.Add(newItem);
+                    }
+                }
+            }
         }
         public int getCantidad(int cantidad = 0)
         {

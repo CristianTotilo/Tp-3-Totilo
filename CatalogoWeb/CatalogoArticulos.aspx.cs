@@ -19,16 +19,23 @@ namespace CatalogoWeb
             {
                 CatalogoNegocio negocio = new CatalogoNegocio();
                 listaArticulos = negocio.listar();
-                //dgvArticulos.DataSource = listaArticulos;
-                //dgvArticulos.DataBind();
 
                 Session[Session.SessionID + "listaArticulos"] = listaArticulos;
-                Session[Session.SessionID + "carritoCompras"] = carritoCompras;
                 if (!IsPostBack)
                 { 
                     repetidor.DataSource = listaArticulos;
                     repetidor.DataBind();
                 }
+                if ((CarritoCompras)Session["CarritoCompras" + Session.SessionID] != null)
+                {
+                    carritoCompras.ID = "carrito-" + Session.SessionID;
+                    carritoCompras = (CarritoCompras)Session["CarritoCompras" + Session.SessionID];
+                }
+                //string idArticulo = Request.QueryString["idsum"];
+                //if (idArticulo != null)
+                //{
+                //    AgregarAlCarrito(idArticulo);
+                //}
 
             }
             catch (Exception ex)
@@ -37,63 +44,20 @@ namespace CatalogoWeb
                 Response.Redirect("Error.aspx");
             }
         }
-      
-      
-        //protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
-        //{
 
-        //}
-
-        //protected void txtNavegar_Click(object sender, EventArgs e)
+        //protected void AgregarAlCarrito(string IdArticulo)
         //{
         //    try
         //    {
-        //        //var algo = txtTextbox.Text;
-
-        //        //if (txtTextbox.Text == "HOLA")
-        //        //    Response.Redirect("/Index.aspx");
-        //        //else
-        //        //    Response.Redirect("/Default.aspx");
+        //        Articulo articuloParaAgregar = new Articulo();
+        //        articuloParaAgregar = listaArticulos.Find(articulo => articulo.ID == Convert.ToInt32(IdArticulo));
+        //        carritoCompras.agregarItem(articuloParaAgregar);
         //    }
         //    catch (Exception)
         //    {
-
         //        throw;
         //    }
         //}
 
-        //protected void txtNumeroPokemon_TextChanged(object sender, EventArgs e)
-        //{
-        //    //string algo = txtNumeroPokemon.Text;
-
-        //    //if (Convert.ToInt32(algo) <= 151)
-        //    //{
-        //    //    Session["NumeroPokemon" + Session.SessionID] = algo;
-        //    //    Response.Redirect("PokemonDetail.aspx");
-        //    //}
-        //    //else
-        //    //{
-        //    //    Session["Error" + Session.SessionID] = "El pokemon debe ser menor o igual a 151";
-        //    //    Response.Redirect("Error.aspx");
-        //    //}
-        //}
-
-        //protected void btnArgumento_Click(object sender, EventArgs e)
-        //{
-        //    // recibimos un argumento desde un asp button a partir de su propiedad CommandArgument.
-        //    // nota: esto por alguna razón no funciona normalmente con un foreach en el front, para ello
-        //    // usamos un repeater para crear cada card de Pokemon y cambia un poco la forma de mapear cada parámetro del objeto a 
-        //    // cada card.
-        //    // lo primero es tener en el load la lista linkeada al repeater, que en este caso se llama "repetidor".
-        //    // El repeater es un simple tag que va en el aspx y dentro del mismo tiene un itemtemplate en el cual
-        //    // se escribe lo que queremos que se repita. 
-        //    var argument = ((Button)sender).CommandArgument;
-        //}
-
-        //protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    //int index = Convert.ToInt32(e.CommandArgument);
-        //    //string idPoke = dgvArticulos.Rows[index].Cells[1].Text;
-        //}
     }
 }
