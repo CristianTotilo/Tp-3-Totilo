@@ -4,6 +4,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <a class="navbar-brand"><%= ContarCarrito()%> elementos &nbsp;| &nbsp;$<%= SubtotalCarrito()%></a>
+    <h4 style="text-align:center;"><%=MensajeCarritoVacio()%></h4>
 
     <div class="container">
         <asp:Repeater runat="server" ID="repetidorCarrito">
@@ -26,6 +28,4 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-    <a class="navbar-brand"><%= ContarCarrito()%> elementos &nbsp;| &nbsp;$<%= SubtotalCarrito()%></a>
-    <h4 style="text-align:center;"><%=MensajeCarritoVacio()%></h4>
 </asp:Content>

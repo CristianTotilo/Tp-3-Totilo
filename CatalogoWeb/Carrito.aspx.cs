@@ -16,12 +16,12 @@ namespace CatalogoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             listaArticulos = (List<Articulo>)Session[Session.SessionID + "listaArticulos"];
             string idArticulo = Request.QueryString["idsum"];
             if (idArticulo != null)
             {
                 AgregarAlCarrito(idArticulo);
+                Session["CarritoCompras" + Session.SessionID] = carritoCompras;
             }
             if (!IsPostBack)
             {
@@ -32,10 +32,10 @@ namespace CatalogoWeb
         {
             try
             {
-                //var articuloSeleccionado = Convert.ToInt32(Request.QueryString["idart"]);
-                //carritoCompras = (CarritoCompras)Session["carritoCompras" + Session.SessionID];
+
                 if (carritoCompras != null)
                 {
+                    carritoCompras = (CarritoCompras)Session["CarritoCompras" + Session.SessionID];
                     repetidorCarrito.DataSource = carritoCompras.listaItems;
                     repetidorCarrito.DataBind();
                 }

@@ -36,6 +36,7 @@ namespace Dominio
                 newItem.ID = articulo.ID;
                 newItem.Articulo = articulo;
                 CantidadItems += 1;
+                newItem.Cantidad += 1;
                 listaItems.Add(newItem);
             }
             else
@@ -51,6 +52,7 @@ namespace Dominio
                     {
                         newItem.ID = articulo.ID;
                         newItem.Articulo = articulo;
+                        newItem.Cantidad += 1;
                         CantidadItems += 1;
                         listaItems.Add(newItem);
                     }
