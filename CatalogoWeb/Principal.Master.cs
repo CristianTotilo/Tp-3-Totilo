@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
@@ -14,30 +15,31 @@ namespace CatalogoWeb
         public List<Articulo> listaArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
-        private void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            Session[Session.SessionID + "listaArticulos"] = listaArticulos;
-            List<Articulo> listaFiltrada;
-            try
-            {
-                if (txtBusqueda.Text == "")
-                {
-                    listaFiltrada = lista;
-                }
-                else
-                {
-                    listaFiltrada = lista.FindAll(slot => slot.Codigo.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Nombre.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Marca.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Categoria.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Precio.ToString().ToLower().Contains(txtBusqueda.Text.ToLower()));
+        //private void txtArticulo_TextChanged(object sender, EventArgs e)
+        //{
+        //    listaArticulos = (List<Articulo>)Session[Session.SessionID + "listaArticulos"];
+        //    List<Articulo> listaFiltrada;
+        //    try
+        //    {
+        //        if (txtArticulo.Text == "")
+        //        {
+        //            listaFiltrada = listaArticulos;
+        //        }
+        //        else
+        //        {
+        //            listaFiltrada = listaArticulos.FindAll(slot => slot.Codigo.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Nombre.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Descripcion.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Marca.Descripcion.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Categoria.Descripcion.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Precio.ToString().ToLower().Contains(txtArticulo.Text.ToLower()));
 
-                }
-                dgvArticulo.DataSource = listaFiltrada;
-            }
-            catch (Exception ex)
-            {
+        //        }
+        //        Session[Session.SessionID + "listaArticulos"] = listaFiltrada;
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //        Session.Add("Error", ex.ToString());
+        //        Response.Redirect("Error.aspx");
+        //    }
+        //}
     }
 }

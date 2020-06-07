@@ -19,8 +19,8 @@
                         <p class="card-text" style="text-align: center; font-size: large;">Total: <strong>$<%#Convert.ToDouble(Eval("Articulo.Precio"))*Convert.ToInt32(Eval("Cantidad"))%></strong></p>
                         <div class="container" style="text-align: center; padding: 5px;">
                             <div class="row" style="display: inline-block">
-                                <a href="VerCarrito.aspx?comprar=<%#Eval("ID")%>" class="btn btn-success">Comprar</a>
-                                <a href="VerCarrito.aspx?eliminar=<%#Eval("ID")%>" class="btn btn-danger">Eliminar</a>
+                                <a href="Carrito.aspx?comprar=<%#Eval("ID")%>" class="btn btn-success">Comprar</a>
+                                <a href="Carrito.aspx?eliminar=<%#Eval("ID")%>" class="btn btn-danger">Eliminar</a>
                             </div>
                         </div>
                     </div>
@@ -28,4 +28,5 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
+    <h1><a class="btn btn-info btn-lg btn-block" href="CatalogoArticulos.aspx">Volver al Catalogo de articulos</a></h1>
 </asp:Content>

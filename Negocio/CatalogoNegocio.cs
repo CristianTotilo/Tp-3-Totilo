@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearQuery( "select A.Id,A.Codigo,A.Nombre,A.Descripcion,M.Descripcion[Marca],C.Descripcion[Categoria],A.ImagenUrl,A.Precio from ARTICULOS as A left join CATEGORIAS as C on A.IdCategoria = C.Id left join MARCAS as M on A.IdMarca = M.Id");
+                datos.setearQuery("select A.Id,A.Codigo,A.Nombre,A.Descripcion,M.Id[IDmarca],M.Descripcion[Marca],C.Id[IDcategoria],C.Descripcion[Categoria],A.ImagenUrl,A.Precio from ARTICULOS as A left join CATEGORIAS as C on A.IdCategoria = C.Id left join MARCAS as M on A.IdMarca = M.Id");
              
                 datos.ejecutarLector();
                 while (datos.lector.Read())
@@ -47,23 +47,33 @@ namespace Negocio
                     else
                         Articulo.Descripcion = "N/A";
 
+                    if (!DBNull.Value.Equals(datos.lector["IDmarca"]))
+                        Articulo.Marca.ID = (int)datos.lector.GetInt32(4); //lector["Descripcion"].ToString(); alternativa 
+                    else
+                        Articulo.Marca.ID = 0;
+
                     if (!DBNull.Value.Equals(datos.lector["Marca"]))
-                        Articulo.Marca.Descripcion = datos.lector.GetString(4); //lector["Descripcion"].ToString(); alternativa 
+                        Articulo.Marca.Descripcion = datos.lector.GetString(5); //lector["Descripcion"].ToString(); alternativa 
                     else
                         Articulo.Marca.Descripcion = "N/A";
 
+                    if (!DBNull.Value.Equals(datos.lector["IDcategoria"]))
+                        Articulo.Categoria.ID = (int)datos.lector.GetInt32(6);
+                    else
+                        Articulo.Categoria.ID = 0;
+
                     if (!DBNull.Value.Equals(datos.lector["Categoria"]))
-                        Articulo.Categoria.Descripcion = datos.lector.GetString(5);
+                        Articulo.Categoria.Descripcion = datos.lector.GetString(7);
                     else
                         Articulo.Categoria.Descripcion = "N/A";
 
                     if (!DBNull.Value.Equals(datos.lector["ImagenUrl"]))
-                        Articulo.ImagenURL = datos.lector.GetString(6);
+                        Articulo.ImagenURL = datos.lector.GetString(8);
                     else
                         Articulo.ImagenURL = "N/A";
 
                     if (!DBNull.Value.Equals(datos.lector["Precio"]))
-                        Articulo.Precio = (decimal)datos.lector.GetDecimal(7);
+                        Articulo.Precio = (decimal)datos.lector.GetDecimal(9);
                     else
                         Articulo.Precio = 0;
                        

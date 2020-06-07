@@ -18,13 +18,15 @@ namespace CatalogoWeb
         {
             listaArticulos = (List<Articulo>)Session[Session.SessionID + "listaArticulos"];
             string idArticulo = Request.QueryString["idsum"];
-            if (idArticulo != null)
-            {
-                AgregarAlCarrito(idArticulo);
-                Session["CarritoCompras" + Session.SessionID] = carritoCompras;
-            }
             if (!IsPostBack)
             {
+                if (idArticulo != null)
+                {
+
+                    AgregarAlCarrito(idArticulo);
+
+                }
+
                 cargarRepeater();
             }
         }
@@ -33,47 +35,60 @@ namespace CatalogoWeb
             try
             {
 
+                carritoCompras = (CarritoCompras)Session["CarritoCompras" + Session.SessionID];
                 if (carritoCompras != null)
                 {
-                    carritoCompras = (CarritoCompras)Session["CarritoCompras" + Session.SessionID];
                     repetidorCarrito.DataSource = carritoCompras.listaItems;
                     repetidorCarrito.DataBind();
                 }
-                //string ID_elemento = Request.QueryString["eliminar"];
-                //if (ID_elemento != null)
-                //{
-                //    if (ID_elemento == "todo")
-                //    {
-                //        List<ElementoCarrito> listaVacia = new List<ElementoCarrito>();
-                //        carrito.ListaDeElementos = listaVacia;
-                //    }
-                //    else
-                //    {
-                //        carrito.EliminarElemento(Convert.ToInt32(ID_elemento));
-                //    }
-                //    Response.Redirect("VerCarrito.aspx");
-                //}
+                else
+                {
+                    MensajeCarritoVacio();
+                }
+                string ID_item = Request.QueryString["eliminar"];
+                if (ID_item != null)
+                {
+                    carritoCompras.eliminarItem(Convert.ToInt32(ID_item));
+
+                    Response.Redirect("Default.aspx");
+                }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Session["Error" + Session.SessionID] = "No agregaste articulos al carrito";
-                Response.Redirect("Error");
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
 
         }
 
         protected void AgregarAlCarrito(string IdArticulo)
         {
+
             try
             {
-                Articulo articuloParaAgregar = new Articulo();
-                articuloParaAgregar = listaArticulos.Find(articulo => articulo.ID == Convert.ToInt32(IdArticulo));
-                carritoCompras.agregarItem(articuloParaAgregar);
+                if (carritoCompras.getCantidad() == 0)
+                {
+                    Articulo articuloParaAgregar = new Articulo();
+                    articuloParaAgregar = listaArticulos.Find(articulo => articulo.ID == Convert.ToInt32(IdArticulo));
+                    carritoCompras.agregarItem(articuloParaAgregar);
+                    carritoCompras.CantidadItems += 1;
+                    Session["CarritoCompras" + Session.SessionID] = carritoCompras;
+                }
+                else
+                {
+                    carritoCompras = (CarritoCompras)Session["CarritoCompras" + Session.SessionID];
+                    Articulo articuloParaAgregar = new Articulo();
+                    articuloParaAgregar = listaArticulos.Find(articulo => articulo.ID == Convert.ToInt32(IdArticulo));
+                    carritoCompras.agregarItem(articuloParaAgregar);
+                    carritoCompras.CantidadItems += 1;
+                    Session["CarritoCompras" + Session.SessionID] = carritoCompras;
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
         protected int ContarCarrito()

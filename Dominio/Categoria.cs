@@ -10,12 +10,12 @@ namespace Dominio
     {
         public int ID { get; set; }
         public string Descripcion { get; set; }
-        public Categoria() { }
-        public Categoria(int Id, string Desc)
-        {
-            ID = Id;
-            Descripcion = Desc;
-        }
+        //public Categoria() { }
+        //public Categoria(int Id, string Desc)
+        //{
+        //    ID = Id;
+        //    Descripcion = Desc;
+        //}
         public override string ToString()
         {
 

@@ -31,11 +31,10 @@ namespace Dominio
         public void agregarItem(Articulo articulo)
         {
             Item newItem = new Item();
-            if (listaItems.Count == 0)
+            if (CantidadItems == 0)
             {
                 newItem.ID = articulo.ID;
                 newItem.Articulo = articulo;
-                CantidadItems += 1;
                 newItem.Cantidad += 1;
                 listaItems.Add(newItem);
             }
@@ -46,21 +45,20 @@ namespace Dominio
                     if (item.ID == articulo.ID)
                     {
                         item.Cantidad += 1;
-                        CantidadItems += 1;
                     }
                     else
                     {
                         newItem.ID = articulo.ID;
                         newItem.Articulo = articulo;
                         newItem.Cantidad += 1;
-                        CantidadItems += 1;
                         listaItems.Add(newItem);
                     }
                 }
             }
         }
-        public int getCantidad(int cantidad = 0)
+        public int getCantidad()
         {
+            int cantidad = 0;
             foreach (var item in listaItems)
             {
                 cantidad += item.Cantidad;
