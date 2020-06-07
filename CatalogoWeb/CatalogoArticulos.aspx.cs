@@ -91,6 +91,27 @@ namespace CatalogoWeb
                 Response.Redirect("Error.aspx");
             }
         }
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Articulo> listaFiltrada;
+                if (txtBuscar.Text == "")
+                    listaFiltrada = listaArticulos;
+                else
+                    listaFiltrada = listaArticulos.FindAll(articulo => articulo.Nombre.ToLower().Contains(txtBuscar.Text.Trim().ToLower()));
+
+                listaArticulos = listaFiltrada;
+                MensajeVacio();
+                repetidor.DataSource = listaArticulos;
+                repetidor.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+        }
         protected string MensajeVacio()
         {
             if (listaArticulos.Count() == 0)
@@ -98,49 +119,6 @@ namespace CatalogoWeb
             else
                 return "";
         }
-        //protected void btnBuscar_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        List<Articulo> listaFiltrada;
-        //        if (txtBuscar.Text == "")
-        //            listaFiltrada = listaArticulos;
-        //        else
-        //            listaFiltrada = listaArticulos.FindAll(articulo => articulo.Nombre.ToLower().Contains(txtBuscar.Text.Trim().ToLower()));
-        //        //cantActual = listaFiltrada.Count();
-        //        repetidor.DataSource = listaFiltrada;
-        //        repetidor.DataBind();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Session.Add("Error", ex.ToString());
-        //        Response.Redirect("Error.aspx");
-        //    }
-        //}
-        //private void txtArticulo_OnTextChanged(object sender, EventArgs e)
-        //{
-        //    List<Articulo> listaFiltrada;
-        //    try
-        //    {
-        //        if (txtArticulo.Text == "")
-        //        {
-        //            listaFiltrada = listaArticulos;
-        //        }
-        //        else
-        //        {
-        //            listaFiltrada = listaArticulos.FindAll(slot => slot.Codigo.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Nombre.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Descripcion.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Marca.Descripcion.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Categoria.Descripcion.ToLower().Contains(txtArticulo.Text.ToLower()) || slot.Precio.ToString().ToLower().Contains(txtArticulo.Text.ToLower()));
-
-        //        }
-        //        repetidor.DataSource = listaFiltrada;
-        //        repetidor.DataBind();
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        Session.Add("Error", ex.ToString());
-        //        Response.Redirect("Error.aspx");
-        //    }
-        //}
 
     }
 }

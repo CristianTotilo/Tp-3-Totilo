@@ -30,7 +30,7 @@
                         <%}%>
                     </div>
                 </li>
-                 <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marcas</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <%foreach (var marca in listaMarcas)
@@ -39,21 +39,20 @@
                         <%}%>
                     </div>
                 </li>
+                <li class="nav-justified">
+                    <asp:TextBox CssClass="form-control mr-sm-2" ID="txtBuscar" runat="server"></asp:TextBox>
+                </li>
+                <li class="nav-item">
+                    <asp:Button CssClass="btn btn-outline-dark" Font-Bold="true" ID="btnBuscar" runat="server" Text="Buscar" OnClick=" btnBuscar_Click" />
+                </li>
             </ul>
-            <%-- <asp:TextBox CssClass="form-control mr-sm-2" ID="txtBuscar" runat="server"></asp:TextBox>
-                <asp:Button CssClass="btn btn-outline-light my-2 my-sm-0" Font-Bold="true" ID="btnBuscar" runat="server" Text="Buscar" OnClick=" btnBuscar_Click" />--%>
-            <%--<form class="form-inline my-2 my-lg-0">
-                <asp:TextBox runat="server" AutoPostBack="true" ID="txtArticulo" OnTextChanged="txtArticulo_TextChanged" />
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Buscar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                <a href="Principal.Master">Principal.Master</a>
-            </form>--%>
+
         </div>
     </nav>
 
 
     <div class="container-fluid" style="background-image: url(https://wallpaperaccess.com/full/2482231.jpg)">
-        <h1 style="text-align:center;"><%=MensajeVacio()%> </h1>
+        <h1 style="text-align: center;"><%=MensajeVacio()%> </h1>
         <div class="card-columns" style="margin-left: 10px; margin-right: 10px;">
             <asp:Repeater runat="server" ID="repetidor">
                 <ItemTemplate>
