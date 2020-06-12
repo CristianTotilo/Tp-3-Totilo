@@ -31,6 +31,7 @@ namespace Dominio
         public void agregarItem(Articulo articulo)
         {
             Item newItem = new Item();
+            bool flag = true;
             if (CantidadItems == 0)
             {
                 newItem.ID = articulo.ID;
@@ -44,15 +45,16 @@ namespace Dominio
                 {
                     if (item.ID == articulo.ID)
                     {
+                        flag = false;
                         item.Cantidad += 1;
                     }
-                    else
-                    {
-                        newItem.ID = articulo.ID;
-                        newItem.Articulo = articulo;
-                        newItem.Cantidad += 1;
-                        listaItems.Add(newItem);
-                    }
+                }
+                if (flag)
+                {
+                    newItem.ID = articulo.ID;
+                    newItem.Articulo = articulo;
+                    newItem.Cantidad += 1;
+                    listaItems.Add(newItem);
                 }
             }
         }

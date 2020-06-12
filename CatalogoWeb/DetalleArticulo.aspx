@@ -14,7 +14,7 @@
                             <h2 class="card-title"><% = articulo.Nombre %></h2>
                             <h4 class="card-title">Categoria: <% = articulo.Categoria %></h4>
                             <h4 class="card-title">Marca: <% = articulo.Marca %></h4>
-                        <div class="container" style="background-color:#fff200; background-clip: border-box; text-align: center">
+                        <div class="container" style="background-color:gold; background-clip: border-box; text-align: center">
                             <h4 class="card-title">Precio: $<% = articulo.Precio %></h4>
                         </div>
                         </div>

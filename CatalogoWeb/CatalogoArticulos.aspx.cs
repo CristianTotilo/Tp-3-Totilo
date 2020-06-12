@@ -40,11 +40,7 @@ namespace CatalogoWeb
                         FiltrarPorCategoria(filtroCategoria);
                     }
                 }
-                if ((CarritoCompras)Session[Session.SessionID + "CarritoCompras"] != null)
-                {
-                    carritoCompras.ID = "carrito-" + Session.SessionID;
-                    carritoCompras = (CarritoCompras)Session[Session.SessionID + "CarritoCompras"];
-                }
+                
                 repetidor.DataSource = listaArticulos;
                 repetidor.DataBind();
 
